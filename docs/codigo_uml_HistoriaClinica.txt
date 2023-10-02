@@ -1,0 +1,43 @@
+@startuml
+class Paciente {
+  - CI: String
+  - nombre: String
+  - apellidos: String
+  - fechaNacimiento: Date
+  - sexo: String
+  - peso: double
+  - estatura: double
+  - direccion: String
+  - imagenes: List<Imagen>
+  - enfermedades: List<Enfermedad>
+  + buscarDatosPaciente(CI: String): void
+  + obtenerPacientesMayorEstatura(): List<Paciente>
+  + obtenerCantidadPacientesFemeninosConDengue(): int
+  + obtenerPacientesOrdenadosPorNombre(): List<Paciente>
+  + obtenerPacientesOrdenadosPorPeso(): List<Paciente>
+  + agregarPaciente(paciente: Paciente): void
+  + eliminarPaciente(CI: String): void
+  + modificarPaciente(CI: String, paciente: Paciente): void
+}
+class Imagen {
+  - nombreArchivo: String
+  - fechaTomada: Date
+  - tipo: String
+  - comentariosDoctor: String
+  + getNombreArchivo(): String
+  + getFechaTomada(): Date
+  + getTipo(): String
+  + getComentariosDoctor(): String
+}
+
+class Enfermedad {
+  - nombre: String
+  - fecha: Date
+  - tratamiento: String
+  + getNombre(): String
+  + getFecha(): Date
+  + getTratamiento(): String
+}
+Paciente "1" -- "0..*" Imagen
+Paciente "1" -- "0..*" Enfermedad
+@enduml
