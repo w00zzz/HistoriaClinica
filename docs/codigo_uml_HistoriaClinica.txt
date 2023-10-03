@@ -1,43 +1,80 @@
 @startuml
+class Hospital {
+  - nombre: String
+  - pacientes: List<Paciente>
+  + searchDatosPaciente(CI: String): void
+  + getPacientesMayorEstatura(): List<Paciente>
+  + getCantidadPacientesFemeninosConDengue(): int
+  + getCantidadPacientesOrdenadosPorNombre(): List<Paciente>
+  + getCantidadPacientesOrdenadosPorPeso(): List<Paciente>
+  + addPaciente(paciente: Paciente): void
+  + delPaciente(CI: String): void
+  + modPaciente(CI: String, paciente: Paciente): void
+}
 class Paciente {
   - CI: String
   - nombre: String
   - apellidos: String
   - fechaNacimiento: Date
-  - sexo: String
+  - sexo: char
   - peso: double
   - estatura: double
   - direccion: String
   - imagenes: List<Imagen>
   - enfermedades: List<Enfermedad>
-  + buscarDatosPaciente(CI: String): void
-  + obtenerPacientesMayorEstatura(): List<Paciente>
-  + obtenerCantidadPacientesFemeninosConDengue(): int
-  + obtenerPacientesOrdenadosPorNombre(): List<Paciente>
-  + obtenerPacientesOrdenadosPorPeso(): List<Paciente>
-  + agregarPaciente(paciente: Paciente): void
-  + eliminarPaciente(CI: String): void
-  + modificarPaciente(CI: String, paciente: Paciente): void
+  + getCI(): String
+  + getNombre(): String
+  + getApellidos(): String
+  + getFechaNacimiento(): Date
+  + getSexo(): char
+  + getPeso(): double
+  + getEstatura(): double
+  + getDireccion(): String
+  + getImagenes(): List<Imagen>
+  + getEnfermedades(): List<Enfermedad>
+
+  + setCI(CI: String): void
+  + setNombre(nombre: String): void
+  + setApellidos(apellidos: String): void
+  + setFechaNacimiento(fechaNacimiento: Date): void
+  + setSexo(sexo: char): void
+  + setPeso(peso: double): void
+  + setEstatura(estatura: double): void
+  + setDireccion(direccion: String): void
+  + setImagenes(imagenes: List<Imagen>): void
+  + setEnfermedades(enfermedades: List<Enfermedad>): void
 }
 class Imagen {
   - nombreArchivo: String
   - fechaTomada: Date
   - tipo: String
   - comentariosDoctor: String
+
   + getNombreArchivo(): String
   + getFechaTomada(): Date
   + getTipo(): String
   + getComentariosDoctor(): String
+
+  + setNombreArchivo(nombreArchivo: String): void
+  + setFechaTomada(fechaTomada: Date): void
+  + setTipo(tipo: String): void
+  + setComentariosDoctor(comentariosDoctor: String): void
 }
 
 class Enfermedad {
   - nombre: String
   - fecha: Date
   - tratamiento: String
+
   + getNombre(): String
   + getFecha(): Date
   + getTratamiento(): String
+
+  + setNombre(nombre: String): void
+  + setFecha(fecha: Date): void
+  + setTratamiento(tratamiento: String): void
 }
+Hospital "1" -- "0..*" Paciente
 Paciente "1" -- "0..*" Imagen
 Paciente "1" -- "0..*" Enfermedad
 @enduml
